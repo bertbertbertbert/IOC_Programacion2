@@ -21,6 +21,8 @@ import java.time.format.DateTimeFormatter;
 public class DataFileUtils {
 
 
+    String dataDirectoryName;
+    String dataFileName;
     /**
      * Constructs a DataFileUtils instance with the given directory and file name.
      * Throws IllegalArgumentException if any of the parameters are null or empty.
@@ -31,7 +33,17 @@ public class DataFileUtils {
      * @throws RuntimeException if directory or file creation fails
      */
     public DataFileUtils(String dataDirectoryName, String dataFileName) {
-
+    //checking if any of the parameters are empty or null
+    if(dataDirectoryName == null || dataDirectoryName.isEmpty() || dataFileName == null || dataFileName.isEmpty()){
+        throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
+    }else{
+    //if any both are correct their value are given to the class variables
+        this.dataDirectoryName = dataDirectoryName; 
+        this.dataFileName = dataFileName;
+    }
+    //calling the creating methods to keep going creating the data File
+    createDataDirectory();
+    createDataFile();
     }
 
     /**

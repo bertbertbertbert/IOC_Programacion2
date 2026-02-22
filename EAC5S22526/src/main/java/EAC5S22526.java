@@ -37,6 +37,14 @@ public class EAC5S22526 {
      * </p>
      */
     public void start() {
-        
+        UtilsIO io = new UtilsIO();
+        String nomCarpeta = io.askForAnyString(Constants.MESSAGE_ASK_FOLDER);
+        if(nomCarpeta == null || nomCarpeta.isEmpty()){
+        nomCarpeta = Constants.DEFAULT_DATA_DIRECTORY;
+        };
+        String nomFitxer = io.askForAnyString(Constants.MESSAGE_ASK_FILE);
+        if(nomFitxer == null || nomFitxer.isEmpty()){
+        nomFitxer = Constants.DEFAULT_DATA_DIRECTORY;
+        };
     }
 }
