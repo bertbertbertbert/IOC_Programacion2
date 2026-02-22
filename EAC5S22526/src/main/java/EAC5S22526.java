@@ -8,9 +8,11 @@ import java.util.Locale;
  * and resetting bet data files.
  * </p>
  * 
- * <p>The data input/output operations are handled by utility classes.</p>
+ * <p>
+ * The data input/output operations are handled by utility classes.
+ * </p>
  * 
- * @IOC 
+ * @IOC
  */
 public class EAC5S22526 {
 
@@ -39,12 +41,36 @@ public class EAC5S22526 {
     public void start() {
         UtilsIO io = new UtilsIO();
         String nomCarpeta = io.askForAnyString(Constants.MESSAGE_ASK_FOLDER);
-        if(nomCarpeta == null || nomCarpeta.isEmpty()){
-        nomCarpeta = Constants.DEFAULT_DATA_DIRECTORY;
-        };
+        if (nomCarpeta == null || nomCarpeta.isEmpty()) {
+            nomCarpeta = Constants.DEFAULT_DATA_DIRECTORY;
+        }
+        ;
+
         String nomFitxer = io.askForAnyString(Constants.MESSAGE_ASK_FILE);
-        if(nomFitxer == null || nomFitxer.isEmpty()){
-        nomFitxer = Constants.DEFAULT_DATA_DIRECTORY;
-        };
+        if (nomFitxer == null || nomFitxer.isEmpty()) {
+            nomFitxer = Constants.DEFAULT_DATA_DIRECTORY;
+        }
+        ;
+
+        DataFileUtils fitxerApostes = new DataFileUtils(nomCarpeta, nomFitxer);
+
+        int opcio;
+        do {
+            io.showMenu(Constants.START_MENU);
+            opcio = io.askForInteger(Constants.MESSAGE_ASK_OPTION_VALUE, Constants.MESSAGE_NOT_VALID_OPTION);
+            switch (opcio) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    io.showError(Constants.MESSAGE_NOT_VALID_OPTION);
+            }
+        } while (opcio != 0);
     }
+
 }

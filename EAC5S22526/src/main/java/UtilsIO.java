@@ -56,7 +56,19 @@ public class UtilsIO {
      */
     public void showMenu(String menuText) {
 
+        if (menuText == null || menuText.isEmpty()) {
+            throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
+        } else {
+            System.err.println("---------------------------------------------------------------------------------------"
+                    + "\n"
+                    + "BET IOC!" + "\n" +
+                    "---------------------------------------------------------------------------------------" + "\n"
+                    + menuText);
+        }
+
     }
+
+    
 
     /**
      * Displays a formatted error message using a default error header.
@@ -115,7 +127,25 @@ public class UtilsIO {
      * @return a valid integer entered by the user
      */
     public int askForInteger(String message, String errorMessage) {
+    String input;
+    int opcio = 0;
+    boolean correcte = false;
+    System.out.println(message);
 
+    do{
+     input = scan.nextLine();
+     if(input == null || input.isEmpty()){
+        System.out.println(errorMessage);
+     }else{
+            try{
+            opcio = Integer.parseInt(input);
+            correcte = true;
+            }catch(NumberFormatException e){
+            System.out.println(errorMessage);
+            }
+        } 
+     }while(!correcte);
+    return opcio;
     }
 
     /**
