@@ -1,0 +1,156 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+/**
+ * Utility class for handling bet data files and their containing directories.
+ * <p>
+ * This class manages creation, deletion, and data insertion in text files that store bet information.
+ * It also provides methods for retrieving file contents and checking file existence.
+ * </p>
+ * 
+ * <p>The class assumes that each bet record contains timestamp, sport, event, bet type, odds, and amount.</p>
+ * 
+ * @IOC 
+ */
+public class DataFileUtils {
+
+
+    /**
+     * Constructs a DataFileUtils instance with the given directory and file name.
+     * Throws IllegalArgumentException if any of the parameters are null or empty.
+     *
+     * @param dataDirectoryName Name of the data folder
+     * @param dataFileName Name of the file to read/write bet data
+     * @throws IllegalArgumentException if dataDirectoryName or dataFileName is null or empty
+     * @throws RuntimeException if directory or file creation fails
+     */
+    public DataFileUtils(String dataDirectoryName, String dataFileName) {
+
+    }
+
+    /**
+     * Creates the data directory if it does not already exist.
+     *
+     * @throws RuntimeException if directory creation fails
+     */
+    public void createDataDirectory() {
+
+    }
+
+    /**
+     * Creates the data file if it does not already exist.
+     *
+     * @throws RuntimeException if file creation fails
+     */
+    public void createDataFile() {
+
+    }
+
+    /**
+     * Returns the absolute path of the data directory.
+     *
+     * @return full path of the data directory
+     */
+    public String getDataDirectoryPath() {
+
+    }
+
+    /**
+     * Returns the absolute path of the data file.
+     *
+     * @return full path of the data file
+     */
+    public String getDataFilePath() {
+
+    }
+
+    /**
+     * Checks if the data directory exists.
+     *
+     * @return true if the directory exists; false otherwise
+     */
+    public boolean dataDirectoryExists() {
+
+    }
+
+    /**
+     * Checks if the data file exists.
+     *
+     * @return true if the file exists; false otherwise
+     */
+    public boolean dataFileExists() {
+
+    }
+
+    /**
+     * Deletes the data directory if it exists and it's empty.
+     * 
+     * @throws RuntimeException if directory deletion fails
+     */
+    public void deleteDataFolderIfEmpty() {
+
+    }
+
+    /**
+     * Deletes the data file if it exists.
+     *
+     * @throws RuntimeException if file deletion fails
+     */
+    public void deleteDataFile() {
+
+    }
+
+    /**
+     * Reads and returns the full contents of data file as a String.
+     *
+     * @return a string containing all the content from the file
+     * @throws IllegalStateException if the data file does not exist
+     * @throws RuntimeException if an I/O error occurs while reading the file
+     */
+    public String getInfoFromDataFileIntoString() {
+
+    }
+
+    /**
+     * Inserts a string into the data file.
+     * <p>
+     * The method validates the input content and appends it to the file with a newline.
+     * </p>
+     *
+     * @param content the string content to insert (must not be null or empty)
+     * @return true if the content was successfully inserted
+     * @throws IllegalArgumentException if content is null or empty
+     * @throws IllegalStateException if the data file does not exist
+     * @throws RuntimeException if an I/O error occurs while writing to the file
+     */
+    public boolean insertStringIntoDataFile(String content) {
+
+    }
+    
+    /**
+     * Inserts a new bet record into the data file, prepending a timestamp.
+     * <p>
+     * The method validates input parameters and writes the bet data in CSV format.
+     * </p>
+     *
+     * @param sport      the sport name (must not be null or empty)
+     * @param event      the event name (must not be null or empty)
+     * @param betType    the type of bet (must not be null or empty)
+     * @param odds       the betting odds (must be positive)
+     * @param amount     the bet amount (must be positive)
+     * @return true if the bet was successfully inserted
+     * @throws IllegalArgumentException if any parameter is null, empty, or invalid
+     * @throws IllegalStateException if the data file does not exist
+     * @throws RuntimeException if an I/O error occurs while writing to the file
+     */
+    public boolean insertBetIntoDataFile(String sport, String event, String betType, float odds,
+                                            float amount) {
+
+    }
+}
