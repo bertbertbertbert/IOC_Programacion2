@@ -1,11 +1,5 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Utility class for handling bet data files and their containing directories.
@@ -47,8 +41,12 @@ public class DataFileUtils {
         // if any both are correct their value are given to the class variables
         this.dataDirectoryName = dataDirectoryName;
         this.dataFileName = dataFileName;
-        createDataDirectory();
-        createDataFile();
+        if (!dataDirectoryExists()) {
+            createDataDirectory();
+        }
+        if (!dataFileExists()) {
+            createDataFile();
+        }
 
     }
 
@@ -155,7 +153,8 @@ public class DataFileUtils {
      * @throws RuntimeException      if an I/O error occurs while reading the file
      */
     public String getInfoFromDataFileIntoString() {
-
+        String info = "";
+        return info;
     }
 
     /**
@@ -173,7 +172,7 @@ public class DataFileUtils {
      *                                  file
      */
     public boolean insertStringIntoDataFile(String content) {
-
+        return false;
     }
 
     /**
@@ -195,7 +194,7 @@ public class DataFileUtils {
      */
     public boolean insertBetIntoDataFile(String sport, String event, String betType, float odds,
             float amount) {
-
+        return false;
     }
 
 }
