@@ -44,15 +44,13 @@ public class EAC5S22526 {
         if (nomCarpeta == null || nomCarpeta.isEmpty()) {
             nomCarpeta = Constants.DEFAULT_DATA_DIRECTORY;
         }
-        ;
 
         String nomFitxer = io.askForAnyString(Constants.MESSAGE_ASK_FILE);
         if (nomFitxer == null || nomFitxer.isEmpty()) {
             nomFitxer = Constants.DEFAULT_DATA_DIRECTORY;
         }
-        ;
-
-        DataFileUtils fitxerApostes = new DataFileUtils(nomCarpeta, nomFitxer);
+        
+        new DataFileUtils(nomCarpeta, nomFitxer);
 
         int opcio;
         do {

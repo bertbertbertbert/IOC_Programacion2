@@ -35,17 +35,21 @@ public class UtilsIO {
      * @throws IllegalArgumentException if header or mainText is null or empty
      */
     public void showAnyMessage(String header, String mainText) {
-
-        if (header == null || mainText == null || header.isEmpty() || mainText.isEmpty()) {
-            throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
-        } else {
-            System.err.println("---------------------------------------------------------------------------------------"
-                    + "\n"
-                    + header + "\n" +
-                    "---------------------------------------------------------------------------------------" + "\n"
-                    + mainText);
+        try {
+            if (header == null || mainText == null || header.isEmpty() || mainText.isEmpty()) {
+                throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
+            } else {
+                System.out.println(
+                        "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + header + "\n" +
+                                "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + mainText);
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
         }
-
     }
 
     /**
@@ -55,20 +59,24 @@ public class UtilsIO {
      * @throws IllegalArgumentException if menuText is null or empty
      */
     public void showMenu(String menuText) {
+        try {
+            if (menuText == null || menuText.isEmpty()) {
+                throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
+            } else {
+                System.err.println(
+                        "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + "BET IOC!" + "\n" +
+                                "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + menuText);
+            }
 
-        if (menuText == null || menuText.isEmpty()) {
-            throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
-        } else {
-            System.err.println("---------------------------------------------------------------------------------------"
-                    + "\n"
-                    + "BET IOC!" + "\n" +
-                    "---------------------------------------------------------------------------------------" + "\n"
-                    + menuText);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
         }
 
     }
-
-    
 
     /**
      * Displays a formatted error message using a default error header.
@@ -77,7 +85,22 @@ public class UtilsIO {
      * @throws IllegalArgumentException if errorText is null or empty
      */
     public void showError(String errorText) {
+        try {
+            if (errorText == null || errorText.isEmpty()) {
+                throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
+            } else {
+                System.err.println(
+                        "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + "ERROR" + "\n" +
+                                "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + errorText);
+            }
 
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     /**
@@ -87,6 +110,22 @@ public class UtilsIO {
      * @throws IllegalArgumentException if infoText is null or empty
      */
     public void showInfo(String infoText) {
+        try {
+            if (infoText == null || infoText.isEmpty()) {
+                throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
+            } else {
+                System.err.println(
+                        "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + "INFO" + "\n" +
+                                "---------------------------------------------------------------------------------------"
+                                + "\n"
+                                + infoText);
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
 
     }
 
@@ -98,6 +137,9 @@ public class UtilsIO {
      * @return the user’s input as a string
      */
     public String askForAnyString(String message) {
+        if (message == null || message.isEmpty()) {
+            message = "Intrueixi una paraula o frase";
+        }
         System.out.println(message);
         return scan.nextLine();
     }
@@ -113,7 +155,26 @@ public class UtilsIO {
      * @return a non-empty string from the user
      */
     public String askForNotEmptyString(String message, String errorMessage) {
+        String text = "";
+        boolean correcte = false;
+        if (message == null || message.isEmpty()) {
+            message = "Intrueixi una paraula o frase";
+        }
+        do {
+            System.out.println(message);
+            text = scan.nextLine();
+            if (text == null || text.isEmpty()) {
+                if (errorMessage == null || errorMessage.isEmpty()) {
+                    errorMessage = "S'ha introduït un text buit";
+                }
 
+                showError(errorMessage);
+            } else {
+                correcte = true;
+            }
+
+        } while (!correcte);
+        return text;
     }
 
     /**
@@ -127,25 +188,29 @@ public class UtilsIO {
      * @return a valid integer entered by the user
      */
     public int askForInteger(String message, String errorMessage) {
-    String input;
-    int opcio = 0;
-    boolean correcte = false;
-    System.out.println(message);
+        String input;
+        int num = 0;
+        boolean correcte = false;
+        if (message == null || message.isEmpty()) {
+            message = "Intrueixi un número enter";
+        }
 
-    do{
-     input = scan.nextLine();
-     if(input == null || input.isEmpty()){
-        System.out.println(errorMessage);
-     }else{
-            try{
-            opcio = Integer.parseInt(input);
-            correcte = true;
-            }catch(NumberFormatException e){
-            System.out.println(errorMessage);
+        do {
+            try {// en este caso a diferencia de pedir un string, sí uso el try-catch porque sí
+                 // puede lanzar un NumberFormatException en el parseInt
+                System.out.println(message);
+                input = scan.nextLine();
+                num = Integer.parseInt(input);
+                correcte = true;
+            } catch (NumberFormatException e) {
+                if (errorMessage == null || errorMessage.isEmpty()) {
+                    errorMessage = "S'ha introduït un format invàlid";
+                }
+                showError(errorMessage);
             }
-        } 
-     }while(!correcte);
-    return opcio;
+
+        } while (!correcte);
+        return num;
     }
 
     /**
@@ -159,7 +224,31 @@ public class UtilsIO {
      * @return a valid float entered by the user
      */
     public float askForFloat(String message, String errorMessage) {
+        String input;
+        float numDec = 0.0f;
+        boolean correcte = false;
+        if (message == null || message.isEmpty()) {
+            message = "Intrueixi un número amb decimals";
+        }
 
+        do {
+            System.out.println(message);
+            input = scan.nextLine();
+            if (input == null || input.isEmpty()) {
+                System.err.println(errorMessage);
+            } else {
+                try {
+                    numDec = Float.parseFloat(input);
+                    correcte = true;
+                } catch (NumberFormatException e) {
+                    if (errorMessage == null || errorMessage.isEmpty()) {
+                        errorMessage = "S'ha introduït un format invàlid";
+                    }
+                    showError(errorMessage);
+                }
+            }
+        } while (!correcte);
+        return numDec;
     }
 
     /**
