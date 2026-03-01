@@ -47,7 +47,7 @@ public class EAC5S22526 {
 
         String nomFitxer = io.askForAnyString(Constants.MESSAGE_ASK_FILE);
         if (nomFitxer == null || nomFitxer.isEmpty()) {
-            nomFitxer = Constants.DEFAULT_DATA_DIRECTORY;
+            nomFitxer = Constants.DEFAULT_FILE_NAME;
         }
         
         new DataFileUtils(nomCarpeta, nomFitxer);
@@ -66,9 +66,12 @@ public class EAC5S22526 {
                 case 4:
                     break;
                 default:
+                    if(opcio !=0){
                     io.showError(Constants.MESSAGE_NOT_VALID_OPTION);
+                    }
             }
         } while (opcio != 0);
+        io.showInfo("Has sortit.");
     }
 
 }

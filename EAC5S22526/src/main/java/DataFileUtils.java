@@ -40,17 +40,16 @@ public class DataFileUtils {
      */
     public DataFileUtils(String dataDirectoryName, String dataFileName) {
         // checking if any of the parameters are empty or null
-        try {
-            if (dataDirectoryName == null || dataDirectoryName.isEmpty() || dataFileName == null
-                    || dataFileName.isEmpty()) {
-                throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+        if (dataDirectoryName == null || dataDirectoryName.isEmpty() || dataFileName == null
+                || dataFileName.isEmpty()) {
+            throw new IllegalArgumentException(Constants.MESSAGE_ERROR_EMPTY_STRING);
         }
         // if any both are correct their value are given to the class variables
         this.dataDirectoryName = dataDirectoryName;
         this.dataFileName = dataFileName;
+        createDataDirectory();
+        createDataFile();
+
     }
 
     /**
@@ -96,7 +95,8 @@ public class DataFileUtils {
      * @return full path of the data directory
      */
     public String getDataDirectoryPath() {
-
+        File path = new File(this.dataDirectoryName);
+        return path.getAbsolutePath();
     }
 
     /**
@@ -105,7 +105,8 @@ public class DataFileUtils {
      * @return full path of the data file
      */
     public String getDataFilePath() {
-
+        File filePath = new File(this.dataDirectoryName, this.dataFileName);
+        return filePath.getAbsolutePath();
     }
 
     /**
@@ -114,7 +115,8 @@ public class DataFileUtils {
      * @return true if the directory exists; false otherwise
      */
     public boolean dataDirectoryExists() {
-
+        File dataDirectory = new File(this.dataDirectoryName);
+        return dataDirectory.exists();
     }
 
     /**
@@ -123,7 +125,8 @@ public class DataFileUtils {
      * @return true if the file exists; false otherwise
      */
     public boolean dataFileExists() {
-
+        File file = new File(this.dataDirectoryName, this.dataFileName);
+        return file.exists();
     }
 
     /**
@@ -194,4 +197,5 @@ public class DataFileUtils {
             float amount) {
 
     }
+
 }
